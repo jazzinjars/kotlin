@@ -1,0 +1,12 @@
+= Kotlin Projects
+
+
+This workspace is a playground to learn Kotlin JVM language.
+
+Some samples/tests have documentation, otherwise read the code.
+
+== Specifications Index
+
+- link:https://github.com/jazzinjars/kotlin/tree/master/spring-boot[Spring Boot on Kotlin]
+
+== How to execute Samples
