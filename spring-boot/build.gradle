@@ -8,16 +8,17 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("org.jetbrains.springboot:springboot-gradle-plugin:${kotlinVersion}")
-		classpath("org.jetbrains.springboot:springboot-allopen:${kotlinVersion}")
-		classpath("org.jetbrains.springboot:springboot-noarg:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
 	}
 }
-//From SpringGuides: https://github.com/spring-guides/tut-spring-boot-kotlin
+//Starting Learning Kotlin From SpringGuides: https://github.com/spring-guides/tut-spring-boot-kotlin
 
-apply plugin: 'springboot'
-apply plugin: 'springboot-spring'
-apply plugin: 'springboot-jpa'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'kotlin-jpa'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -25,21 +26,27 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.jazzinjars'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+
 compileKotlin {
 	kotlinOptions {
 		freeCompilerArgs = ["-Xjsr305=strict"]
-		jvmTarget = "1.8"
+        jvmTarget = "1.8"
 	}
 }
+
 compileTestKotlin {
 	kotlinOptions {
 		freeCompilerArgs = ["-Xjsr305=strict"]
-		jvmTarget = "1.8"
+        jvmTarget = "1.8"
 	}
 }
 
 repositories {
 	mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
 }
 
 
@@ -51,5 +58,11 @@ dependencies {
 	implementation("org.jetbrains.springboot:springboot-stdlib-jdk8")
 	implementation("org.jetbrains.springboot:springboot-reflect")
 	runtimeOnly('com.h2database:h2')
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.boot:spring-boot-starter-test') {
+        exclude module: 'junit'
+    }
+    testImplementation('org.junit.jupiter:junit-jupiter-api')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
 }
