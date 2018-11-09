@@ -1,4 +1,4 @@
-package com.jazzinjars.springboot
+package com.jazzinjars.springboot.integration
 
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.AfterAll

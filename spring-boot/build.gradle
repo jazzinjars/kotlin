@@ -51,18 +51,21 @@ test {
 
 
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-	implementation('org.springframework.boot:spring-boot-starter-mustache')
-	implementation('org.springframework.boot:spring-boot-starter-web')
-	implementation('com.fasterxml.jackson.module:jackson-module-springboot')
-	implementation("org.jetbrains.springboot:springboot-stdlib-jdk8")
-	implementation("org.jetbrains.springboot:springboot-reflect")
-	runtimeOnly('com.h2database:h2')
-    testCompile('org.springframework.boot:spring-boot-starter-test') {
-        exclude module: 'junit'
-    }
-    testImplementation('org.junit.jupiter:junit-jupiter-api')
-    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-mustache')
+	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	compile("org.jetbrains.kotlin:kotlin-reflect")
+	compile("com.atlassian.commonmark:commonmark:0.11.0")
+	compile("com.atlassian.commonmark:commonmark-ext-autolink:0.11.0")
+	runtime("com.h2database:h2")
+	kapt("org.springframework.boot:spring-boot-configuration-processor")
+	testCompile('org.springframework.boot:spring-boot-starter-test') {
+		exclude module: 'junit'
+	}
+	testCompile("com.nhaarman:mockito-kotlin:1.5.0")
+	testImplementation('org.junit.jupiter:junit-jupiter-api')
+	testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine')
 
 }

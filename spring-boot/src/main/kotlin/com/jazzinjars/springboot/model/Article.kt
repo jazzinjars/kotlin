@@ -8,7 +8,7 @@ data class Article(
         val title: String,
         val headline: String,
         val content: String,
-        val addedAt: LocalDateTime = LocalDateTime.now(),
+        @ManyToOne @JoinColumn val author: User,
         @Id @GeneratedValue val id: Long? = null,
-        @ManyToOne @JoinColumn val author: User
+        val addedAt: LocalDateTime = LocalDateTime.now()
 )
