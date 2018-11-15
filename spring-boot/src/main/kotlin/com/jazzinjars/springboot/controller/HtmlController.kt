@@ -13,7 +13,8 @@ import java.time.format.DateTimeFormatter
 
 @Controller
 class HtmlController(private val repository: ArticleRepository,
-                     private val markdownConverter: MarkdownConverter) {
+                     private val markdownConverter: MarkdownConverter,
+                     private val properties: KotlinProperties) {
 
     @GetMapping("/")
     fun blog(model: Model): String {
