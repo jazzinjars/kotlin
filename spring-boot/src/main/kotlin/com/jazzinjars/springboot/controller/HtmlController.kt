@@ -1,7 +1,7 @@
 package com.jazzinjars.springboot.controller
 
 import com.jazzinjars.springboot.model.Article
-import com.jazzinjars.springboot.model.User
+import com.jazzinjars.springboot.model.RenderedArticle
 import com.jazzinjars.springboot.repositories.ArticleRepository
 import com.jazzinjars.springboot.services.MarkdownConverter
 import org.springframework.stereotype.Controller
@@ -9,6 +9,7 @@ import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import java.time.format.DateTimeFormatter
 
 @Controller
 class HtmlController(private val repository: ArticleRepository,
@@ -32,20 +33,12 @@ class HtmlController(private val repository: ArticleRepository,
         return "article"
     }
 
-    fun Article.render() = RenderedArticle(
+    fun Article.render() = RenderedArticle (
             title,
             markdownConverter.invoke(headline),
             markdownConverter.invoke(content),
             author,
             id,
-            addedAt.format()
+            addedAt.format(DateTimeFormatter.ISO_DATE)
     )
-
-    data class RenderedArticle(
-            val title: String,
-            val headline: String,
-            val content: String,
-            val author: User,
-            val id: Long?,
-            val addedAt: String)
 }
